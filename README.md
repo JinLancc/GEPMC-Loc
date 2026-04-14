@@ -85,7 +85,7 @@ GEPMC-Loc/
 
 To evaluate the model on the independent test set using the saved models:
 ```bash
-python predict_GEPMC_Loc.py
+python predict.py
 ```
 
 ## License
