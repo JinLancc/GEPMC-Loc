@@ -1,6 +1,6 @@
 # GEPMC-Loc: A Dynamic Gated Ensemble Network Fusing Pre-trained Language Models and Multi-scale Convolution for RNA Subcellular Localization
 
-GEPMC-Loc is a deep learning framework designed to predict the subcellular localization of RNA sequences. It fuses structure-enhanced semantic representations from pre-trained RNA language model ERNIE-RNA and cross-modal evolutionary features from ProtRNA with multi-scale convolutional neural networks, and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
+GEPMC-Loc is a deep learning framework designed to predict the subcellular localization of RNA sequences. It fuses structure-enhanced semantic representations from the pre-trained RNA language model ERNIE-RNA and cross-modal evolutionary features from ProtRNA with attention-enhanced multi-scale convolutional neural networks, and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
 
 ## 1. Project Structure
 
