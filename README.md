@@ -1,7 +1,7 @@
 ```markdown
 # GEPMC-Loc: A Dynamic Gated Ensemble Network Fusing Pre-trained Language Models and Multi-scale Convolution for RNA Subcellular Localization
 
-GEPMC-Loc is a deep learning framework designed to predict the subcellular localization of RNA sequences. It fuses advanced semantic features from pre-trained RNA language models (ERNIE-RNA and ProtRNA) with multi-scale convolutional neural networks and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
+GEPMC-Loc (also known as TriHybrid-Net) is a deep learning framework designed to predict the subcellular localization of RNA sequences. It integrates advanced semantic features from pre-trained RNA language models (ERNIE-RNA and ProtRNA) with multi-scale convolutional neural networks and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
 
 ## 1. Project Structure
 
@@ -70,7 +70,22 @@ To evaluate the model on the independent test set using the averaging strategy:
 ```bash
 python predict_GEPMC_Loc.py
 ```
+**Prediction Strategy**: This script implements a **Cross-Validation Averaging** strategy. It loads the best models saved from all 5 folds, performs inference on the test set with each, and calculates the **average of the 5-fold results** to produce the final evaluation metrics (ACC, MCC, Sn, Sp, etc.).
 
+## 5. Directory Overview
+```text
+GEPMC-Loc/
+├── data/                       # Dataset files (.pkl)
+├── ERNIE_RNA_embedding/        # Feature storage (Automatic or Manual)
+├── ProTRNA_embedding/          # Feature storage (Automatic or Manual)
+├── config.py                   # Central configuration
+├── model_GEPMC_Loc.py          # Model architecture
+├── train_GEPMC_Loc.py          # Training pipeline
+├── predict_GEPMC_Loc.py        # 5-fold averaging inference
+├── environment.yaml            # Conda environment file
+├── Extract_ERNIE-RNA_Embedding.py
+└── Extract_protRNA_Embedding.py
+```
 
 ## License
 This project is for academic and research purposes only.
