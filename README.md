@@ -1,3 +1,4 @@
+```markdown
 # GEPMC-Loc: A Dynamic Gated Ensemble Network Fusing Pre-trained Language Models and Multi-scale Convolution for RNA Subcellular Localization
 
 GEPMC-Loc (also known as TriHybrid-Net) is a deep learning framework designed to predict the subcellular localization of RNA sequences. It integrates advanced semantic features from pre-trained RNA language models (ERNIE-RNA and ProtRNA) with multi-scale convolutional neural networks and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
@@ -22,69 +23,70 @@ conda activate GEPMC-Loc
 
 ### 2.2 Key Dependencies
 The project utilizes the following core libraries:
-* **Deep Learning**: PyTorch, TorchOptuna-Dashboard
-* **Data Science**: Pandas, NumPy, Scikit-learn
-* **Others**: Pillow, Packaging, Olefile
+* **Deep Learning**: `torch`, `optuna-dashboard`
+* **Data Science**: `pandas`, `numpy`, `scikit-learn`
+* **Others**: `pillow`, `packaging`, `olefile`
 
 ## 3. Getting Started (Feature Preparation)
 
 ### 3.1 Download Pre-computed Features
-If you wish to use our pre-extracted features directly, please download them from Hugging Face:
-* **Download Link**: 📥 GEPMC-Loc-Embedding.zip
-* **Instructions**: Extract the files and place the `ERNIE_RNA_embedding/` and `ProTRNA_embedding/` folders into the root directory.
+If you wish to use our pre-extracted features directly, download them from Hugging Face:
+* **Download Link**: [📥 GEPMC-Loc-Embedding.zip](https://huggingface.co/datasets/jin-lan/GEPMC-Loc-Embedding/resolve/main/embedding.zip)
+* **Instruction**: Unzip the file and place the folders in the root directory.
+
+### 3.2 Directory Structure After Extraction
+Ensure your project directory matches the following structure to ensure the code runs correctly:
+```text
+GEPMC-Loc/
+├── data/                       # Dataset files (.pkl)
+├── ERNIE_RNA_embedding/        # Extracted features (from Hugging Face)
+├── ProTRNA_embedding/          # Extracted features (from Hugging Face)
+├── save_model/                 # Pre-trained model weights (.pth)
+├── config.py                   # Central configuration
+├── model_GEPMC_Loc.py          # Model architecture
+├── train_GEPMC_Loc.py          # Training pipeline
+├── predict_GEPMC_Loc.py        # Inference script
+└── environment.yaml            # Conda environment file
+```
 
 ## 4. Usage (End-to-End Workflow)
 
-To implement end-to-end prediction from raw sequences, you need to integrate the source code of the underlying pre-trained models.
+To achieve end-to-end prediction from raw sequences, you need to integrate the source code of the underlying pre-trained models.
 
-### Step 1: Clone and Configure Pre-trained Repositories
-Download the official source code for both RNA language models:
+### 4.1 Step 1: Clone and Configure Pre-trained Repositories
+Download the official source code for the two RNA language models:
 * **ERNIE-RNA**: [GitHub - Bruce-ywj/ERNIE-RNA](https://github.com/Bruce-ywj/ERNIE-RNA)
 * **ProtRNA**: [GitHub - roxie-zhang/ProtRNA](https://github.com/roxie-zhang/ProtRNA)
 
-**Important**: You must follow the instructions provided in the links above to configure the specific environments and download the model weights for both ERNIE-RNA and ProtRNA before proceeding.
+> **Important**: You must follow the instructions provided in the links above to configure the specific environments and download the model weights for both ERNIE-RNA and ProtRNA before proceeding.
 
-### Step 2: Integrate Extraction Scripts
+### 4.2 Step 2: Integrate Extraction Scripts
 Copy the following two scripts from this repository into the respective directories:
-* Copy `Extract_ERNIE-RNA_Embedding.py` into the ERNIE-RNA directory.
-* Copy `Extract_protRNA_Embedding.py` into the ProtRNA directory.
+1. Copy `Extract_ERNIE-RNA_Embedding.py` into the **ERNIE-RNA** directory.
+2. Copy `Extract_protRNA_Embedding.py` into the **ProtRNA** directory.
 
-**Note**: These scripts allow GEPMC-Loc to automatically call the pre-trained models for feature extraction during the process.
+*Note: These scripts allow GEPMC-Loc to automatically invoke the pre-trained models for feature extraction during the process.*
 
-### Step 3: Configuration
+### 4.3 Step 3: Configuration
 Edit `config.py` to match your local paths. This file is the central control for the entire project:
 * Set `ERNIE_CWD` and `PROTRNA_CWD` to the absolute paths of the repositories prepared in Step 1.
-* Configure local data paths and output directories for logs and models.
+* Configure your local data paths and output directories for logs and models.
 
-### Step 4: 5-Fold Cross-Validation Training
-To perform feature extraction and start the five-fold training process:
+### 4.4 Step 4: Training with 5-Fold Cross-Validation
+To perform feature extraction and start the 5-fold training process:
 ```bash
 python train_GEPMC_Loc.py
 ```
 * **Logs**: Saved in the `log/` directory.
 * **Model Weights**: Best weights for each fold are saved in `save_model/`.
 
-### Step 5: Inference and Evaluation (5-Fold Averaging)
-To evaluate the model on the independent test set using the averaging strategy:
+### 4.5 Step 5: Direct Prediction Using Saved Models
+If you want to perform predictions directly using the saved model weights:
 ```bash
 python predict_GEPMC_Loc.py
 ```
-* **Prediction Strategy**: This script implements a Cross-Validation Averaging strategy. It loads the best models saved from all 5 folds, performs inference on the test set with each, and calculates the average of the 5-fold results to produce the final evaluation metrics (ACC, MCC, Sn, Sp, etc.).
-
-## 5. Directory Overview
-```plaintext
-GEPMC-Loc/
-├── data/                       # Dataset files (.pkl)
-├── ERNIE_RNA_embedding/        # Feature storage (Automatic or Manual)
-├── ProTRNA_embedding/          # Feature storage (Automatic or Manual)
-├── config.py                   # Central configuration
-├── model_GEPMC_Loc.py          # Model architecture
-├── train_GEPMC_Loc.py          # Training pipeline
-├── predict_GEPMC_Loc.py        # 5-fold averaging inference
-├── environment.yaml            # Conda environment file
-├── Extract_ERNIE-RNA_Embedding.py
-└── Extract_protRNA_Embedding.py
-```
+**Prediction Strategy**: This script implements a **Cross-Validation Averaging** strategy. It loads the best models saved from all 5 folds, performs inference on the test set with each, and calculates the **average of the 5-fold results** to produce the final evaluation metrics (ACC, MCC, Sn, Sp, etc.).
 
 ## License
 This project is for academic and research purposes only.
+```
