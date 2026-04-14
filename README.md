@@ -1,6 +1,6 @@
 # GEPMC-Loc: A Dynamic Gated Ensemble Network Fusing Pre-trained Language Models and Multi-scale Convolution for RNA Subcellular Localization
 
-GEPMC-Loc is a deep learning framework designed to predict the subcellular localization of RNA sequences. It fuses advanced semantic features from pre-trained RNA language models (ERNIE-RNA and ProtRNA) with multi-scale convolutional neural networks and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
+GEPMC-Loc is a deep learning framework designed to predict the subcellular localization of RNA sequences. It fuses structure-enhanced semantic representations from pre-trained RNA language model ERNIE-RNA and cross-modal evolutionary features from ProtRNA with multi-scale convolutional neural networks, and employs a dynamic gating mechanism to adaptively combine multi-source features for accurate prediction.
 
 ## 1. Project Structure
 
@@ -42,7 +42,7 @@ Download the official source code for both RNA language models:
 * **ERNIE-RNA**: [GitHub - Bruce-ywj/ERNIE-RNA](https://github.com/Bruce-ywj/ERNIE-RNA)
 * **ProtRNA**: [GitHub - roxie-zhang/ProtRNA](https://github.com/roxie-zhang/ProtRNA)
 
-**Important**: You must follow the instructions provided in the links above to configure the specific environments and download the model weights for both ERNIE-RNA and ProtRNA before proceeding.
+**Important**: You must follow the instructions provided in the links above to configure the required environments for both ERNIE-RNA and ProtRNA to enable subsequent feature extraction.
 
 ### Step 2: Integrate Extraction Scripts
 Copy the following two scripts from this repository into the respective directories:
