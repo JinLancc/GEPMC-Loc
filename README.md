@@ -32,22 +32,7 @@ The project utilizes the following core libraries:
 ### 3.1 Download Pre-computed Features
 If you wish to use our pre-extracted features directly, download them from Hugging Face:
 * **Download Link**: [📥 GEPMC-Loc-Embedding.zip](https://huggingface.co/datasets/jin-lan/GEPMC-Loc-Embedding/resolve/main/embedding.zip)
-* **Instruction**: Unzip the file and place the folders in the root directory.
-
-### 3.2 Directory Structure After Extraction
-Ensure your project directory matches the following structure to ensure the code runs correctly:
-```text
-GEPMC-Loc/
-├── data/                       # Dataset files (.pkl)
-├── ERNIE_RNA_embedding/        # Extracted features (from Hugging Face)
-├── ProTRNA_embedding/          # Extracted features (from Hugging Face)
-├── save_model/                 # Pre-trained model weights (.pth)
-├── config.py                   # Central configuration
-├── model_GEPMC_Loc.py          # Model architecture
-├── train_GEPMC_Loc.py          # Training pipeline
-├── predict_GEPMC_Loc.py        # Inference script
-└── environment.yaml            # Conda environment file
-```
+* **Instruction**: Unzip the file and place `ERNIE_RNA_embedding/` and `ProTRNA_embedding/` folders in the root directory.
 
 ## 4. Usage (End-to-End Workflow)
 
@@ -80,8 +65,8 @@ python train_GEPMC_Loc.py
 * **Logs**: Saved in the `log/` directory.
 * **Model Weights**: Best weights for each fold are saved in `save_model/`.
 
-### 4.5 Step 5: Direct Prediction Using Saved Models
-If you want to perform predictions directly using the saved model weights:
+### 4.5 Step 5: Inference and Evaluation (5-Fold Averaging)
+To evaluate the model on the independent test set using the averaging strategy:
 ```bash
 python predict_GEPMC_Loc.py
 ```
