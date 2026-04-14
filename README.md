@@ -27,14 +27,14 @@ The project utilizes the following core libraries:
 * **Data Science**: Pandas, NumPy, Scikit-learn
 * **Others**: Pillow, Packaging, Olefile
 
-## 3. Getting Started (Feature Preparation)
+## 3. Getting Started 
 
-### 3.1 Download Pre-computed Features
+### 3.1 Feature Preparation
 If you wish to use our pre-extracted features directly, please download them from Hugging Face:
 * **Download Link**: [📥 GEPMC-Loc-Embedding.zip](https://huggingface.co/datasets/jin-lan/GEPMC-Loc-Embedding/resolve/main/embedding.zip)
 * **Instructions**: Extract the files and place the `ERNIE_RNA_embedding/` and `ProTRNA_embedding/` folders into the root directory.
 
-## 4. Usage (End-to-End Workflow)
+## 4. Usage 
 
 To implement end-to-end prediction from raw sequences, you need to integrate the source code of the underlying pre-trained models.
 
